@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    container_name: dha-dashboard
+    restart: unless-stopped
+    networks:
+      - coolify
+    expose:
+      - "3000"
+
+networks:
+  coolify:
+    external: true

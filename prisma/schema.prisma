@@ -1,0 +1,87 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Professional {
+  id              Int      @id @default(autoincrement())
+  dhaUniqueId     String   @unique
+  name            String
+  nationality     String   @default("Ethiopia")
+  category        String   // Full: "Physician-General Practitioner"
+  categoryGroup   String   // "Physician"
+  speciality      String   // "General Practitioner"
+  currentFacility String?
+  phone           String?
+  mobileNumber    String?
+  officeNumber    String?
+  email           String?
+  personalEmail   String?
+  workEmail       String?
+  profileUrl      String?
+  hasContact      Boolean  @default(false)
+
+  experiences  Experience[]
+  educations   Education[]
+  languages    Language[]
+  specialities Speciality[]
+
+  @@index([categoryGroup])
+  @@index([currentFacility])
+  @@index([hasContact])
+}
+
+model Experience {
+  id             Int          @id @default(autoincrement())
+  professionalId Int
+  professional   Professional @relation(fields: [professionalId], references: [id], onDelete: Cascade)
+  facility       String?
+  role           String?
+  status         String?
+  isPresent      Boolean      @default(false)
+  startDate      String?
+  endDate        String?
+  duration       String?
+  license        String?
+
+  @@index([professionalId])
+  @@index([facility])
+}
+
+model Education {
+  id             Int          @id @default(autoincrement())
+  professionalId Int
+  professional   Professional @relation(fields: [professionalId], references: [id], onDelete: Cascade)
+  university     String?
+  degree         String?
+  graduationYear String?
+  location       String?
+
+  @@index([professionalId])
+}
+
+model Language {
+  id             Int          @id @default(autoincrement())
+  professionalId Int
+  professional   Professional @relation(fields: [professionalId], references: [id], onDelete: Cascade)
+  language       String
+  proficiency    String?
+
+  @@index([professionalId])
+}
+
+model Speciality {
+  id             Int          @id @default(autoincrement())
+  professionalId Int
+  professional   Professional @relation(fields: [professionalId], references: [id], onDelete: Cascade)
+  name           String
+  status         String?
+  facility       String?
+  license        String?
+
+  @@index([professionalId])
+}
