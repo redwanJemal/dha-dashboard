@@ -41,12 +41,12 @@ export function BarChart({
       >
         <CartesianGrid
           strokeDasharray="3 3"
-          stroke="hsl(var(--border))"
+          stroke="var(--color-border)"
           opacity={0.5}
         />
         {isHorizontal ? (
           <>
-            <XAxis type="number" fontSize={12} tickLine={false} axisLine={false} />
+            <XAxis type="number" fontSize={12} tickLine={false} axisLine={false} tick={{ fill: "var(--color-muted-foreground)" }} />
             <YAxis
               type="category"
               dataKey="name"
@@ -54,6 +54,7 @@ export function BarChart({
               fontSize={12}
               tickLine={false}
               axisLine={false}
+              tick={{ fill: "var(--color-muted-foreground)" }}
               tickFormatter={(v: string) => truncate(v, 22)}
             />
           </>
@@ -64,21 +65,22 @@ export function BarChart({
               fontSize={12}
               tickLine={false}
               axisLine={false}
+              tick={{ fill: "var(--color-muted-foreground)" }}
               tickFormatter={(v: string) => truncate(v, 12)}
             />
-            <YAxis fontSize={12} tickLine={false} axisLine={false} />
+            <YAxis fontSize={12} tickLine={false} axisLine={false} tick={{ fill: "var(--color-muted-foreground)" }} />
           </>
         )}
         <Tooltip
           formatter={(value: number) => [value.toLocaleString(), "Count"]}
           contentStyle={{
             borderRadius: "8px",
-            border: "1px solid hsl(var(--border))",
-            backgroundColor: "hsl(var(--card))",
-            color: "hsl(var(--card-foreground))",
+            border: "1px solid var(--color-border)",
+            backgroundColor: "var(--color-card)",
+            color: "var(--color-card-foreground)",
             fontSize: "13px",
           }}
-          cursor={{ fill: "hsl(var(--muted))", opacity: 0.4 }}
+          cursor={{ fill: "var(--color-muted)", opacity: 0.4 }}
         />
         <Bar
           dataKey="value"

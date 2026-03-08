@@ -39,9 +39,9 @@ export function CategoryChart({ data }: CategoryChartProps) {
             ]}
             contentStyle={{
               borderRadius: "8px",
-              border: "1px solid hsl(var(--border))",
-              backgroundColor: "hsl(var(--card))",
-              color: "hsl(var(--card-foreground))",
+              border: "1px solid var(--color-border)",
+              backgroundColor: "var(--color-card)",
+              color: "var(--color-card-foreground)",
               fontSize: "13px",
             }}
           />

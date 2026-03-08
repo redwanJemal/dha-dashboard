@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { classifyFacilityType } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -194,7 +195,12 @@ export default async function FacilitiesPage() {
                       {f.rank}
                     </TableCell>
                     <TableCell className="font-medium max-w-[280px] truncate">
-                      {f.name}
+                      <Link
+                        href={`/facilities/${encodeURIComponent(f.name)}`}
+                        className="text-foreground hover:text-primary hover:underline"
+                      >
+                        {f.name}
+                      </Link>
                     </TableCell>
                     <TableCell>
                       <Badge variant="secondary">{f.type}</Badge>

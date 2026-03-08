@@ -71,7 +71,13 @@ export default async function ProfessionalDetailPage({
         {professional.currentFacility && (
           <p className="text-sm text-muted-foreground flex items-center gap-1.5">
             <Building2 className="h-4 w-4" />
-            Currently at: {professional.currentFacility}
+            Currently at:{" "}
+            <Link
+              href={`/facilities/${encodeURIComponent(professional.currentFacility)}`}
+              className="text-primary hover:underline"
+            >
+              {professional.currentFacility}
+            </Link>
           </p>
         )}
       </div>
